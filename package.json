@@ -1,6 +1,6 @@
 {
   "name": "electron-app",
-  "version": "0.0.2",
+  "version": "1.0.2",
   "description": "My test electron app",
   "main": "main.js",
   "scripts": {
@@ -8,9 +8,9 @@
     "watch": "nodemon --exec electron .",
     "start": "electron .",
     "dist": "electron-builder",
-    "deploy": "electron-builder build --l"
+    "deploy": "cross-env GH_TOKEN=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 electron-builder build --l --publish always"
   },
-  "repository": "https://github.com/ronielli/electron-update.git",
+  "repository": "https://github.com/ronielli/teste3.git",
   "publish": {
     "provider": "github",
     "releaseType": "release"
@@ -20,6 +20,9 @@
     "productName": "Autoupdater app",
     "win": {
       "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
     },
     "directories": {
       "output": "dist"
