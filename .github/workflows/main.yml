@@ -1,32 +1,19 @@
-name: Deploy
-
+name: electron-react-boilerplate
 on:
   push:
-    branches:
-      - main
-
+    branches: [main]
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.6.0
 
       - name: Install dependencies
-        run: npm install
+        run: yarn
 
-      - name: Build
-        run: npm run build
-
-      - name: Deploy to production
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          npm install -g gh-pages
-          gh-pages -d dist -b master -u "ronielli" -r "https://github.com/ronielli/teste3.git"
+      - name: Build the app
+        run: yarn deploy
